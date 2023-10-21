@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:neuronic/business/brain_points_model.dart';
+import 'package:provider/provider.dart';
 
 import 'presentation/home/home_page.dart';
 
 void main() {
-  runApp(const Neuronic());
+  runApp(ChangeNotifierProvider(
+      create: (_) => BrainPoints(), child: const Neuronic()));
 }
 
 class Neuronic extends StatelessWidget {
@@ -18,7 +21,15 @@ class Neuronic extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: FutureBuilder(
+          future: Provider.of<BrainPoints>(context, listen: false).init(),
+          builder: (context, futureSnap) {
+            if (futureSnap.hasData) {
+              return const HomePage();
+            } else {
+              return const CircularProgressIndicator();
+            }
+          }),
     );
   }
 }
