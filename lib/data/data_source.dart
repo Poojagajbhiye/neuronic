@@ -116,7 +116,6 @@ Future<List<BrainPointData>> fetchBrainPoints() async {
   //     await http.get(Uri.parse('htttps://actual_url/place_holder'));
 
   // if (response.statusCode == 200) {
-
   return await getData();
   // } else {
   //throw Exception('Failed to get brain points data.');

@@ -8,8 +8,10 @@ class BrainPoints with ChangeNotifier {
 
   int get brainPointsCount => brainPoints.length;
 
-  init() async {
+  Future<String?> init() async {
     brainPoints = await fetchBrainPoints();
+
+    return 'Data fetched';
   }
 
   updateBrainPointData(

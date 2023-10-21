@@ -11,7 +11,7 @@ class BrainPointData {
 
   factory BrainPointData.fromJSON(Map<String, dynamic> json) => BrainPointData(
         name: json['name'] as String,
-        pulseRateInHz: json['pulseRateInHz'] as int,
-        intensityInPercentage: json['intensityInPercentage'] as int,
+        pulseRateInHz: json['pulseRateInHz'] as int?,
+        intensityInPercentage: json['intensityInPercentage'] as int?,
       );
 }

@@ -18,6 +18,7 @@ class Neuronic extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -27,7 +28,11 @@ class Neuronic extends StatelessWidget {
             if (futureSnap.hasData) {
               return const HomePage();
             } else {
-              return const CircularProgressIndicator();
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
             }
           }),
     );
