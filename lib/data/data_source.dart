@@ -1,3 +1,5 @@
+import 'package:neuronic/business/brain_point_model.dart';
+
 /// This data layer with interact with cloud to get data and update data.
 // import 'package:http/http.dart' as http;
 
@@ -99,17 +101,22 @@ const List<Map<String, dynamic>> allBrainPointsData = [
   },
 ];
 
-Future<List<Map<String, dynamic>>> getData() {
+Future<List<BrainPointData>> getData() {
   return Future.delayed(const Duration(seconds: 2), () {
-    return allBrainPointsData;
+    List<BrainPointData> brainPointsList = [];
+    for (Map<String, dynamic> brainPoint in allBrainPointsData) {
+      brainPointsList.add(BrainPointData.fromJSON(brainPoint));
+    }
+    return brainPointsList;
   });
 }
 
-Future<List<Map<String, dynamic>>> fetchBrainPoints() async {
+Future<List<BrainPointData>> fetchBrainPoints() async {
   // final response =
   //     await http.get(Uri.parse('htttps://actual_url/place_holder'));
 
   // if (response.statusCode == 200) {
+
   return await getData();
   // } else {
   //throw Exception('Failed to get brain points data.');
